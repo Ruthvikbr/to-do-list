@@ -9,8 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.workshop.finalapp.R;
+import com.workshop.finalapp.data.Task;
 
 public class addActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private int[] priorities = {1,2,3};
@@ -22,8 +24,8 @@ public class addActivity extends AppCompatActivity implements AdapterView.OnItem
 
 
         //creating references to views
-        EditText title = findViewById(R.id.newTitle);
-        EditText description = findViewById(R.id.newDescription);
+        final EditText title = findViewById(R.id.newTitle);
+        final EditText description = findViewById(R.id.newDescription);
         Button submitBtn = findViewById(R.id.submit);
 
         //adding spinner elements
@@ -37,7 +39,15 @@ public class addActivity extends AppCompatActivity implements AdapterView.OnItem
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String Title = title.getText().toString();
+                String Description = description.getText().toString();
+                if(!Title.isEmpty() && !Description.isEmpty() && priority!=0){
+                    Task task = new Task(Title,Description,priority);
+                    Toast.makeText(getApplicationContext(),""+task.getPriority(),Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Missed an input",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
