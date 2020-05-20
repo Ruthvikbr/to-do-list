@@ -3,4 +3,10 @@
     <string name="title">Title</string>
     <string name="description">description</string>
     <string name="priority">1</string>
+    <string name="submit">Submit</string>
+    <string-array name="Priority_array">
+    <item>High</item>
+    <item>Medium</item>
+    <item>Low</item>
+    </string-array>
 </resources>
