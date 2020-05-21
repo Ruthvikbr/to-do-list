@@ -22,14 +22,15 @@ public class TaskRepository {
 
     private ExecutorService executor = Executors.newSingleThreadExecutor();
 
-    private TaskRepository(Application application){
-        TaskDatabase  db = TaskDatabase.getInstance(application);
+    private TaskRepository(Application application) {
+        TaskDatabase db = TaskDatabase.getInstance(application);
         taskDao = db.taskDao();
     }
-    public static TaskRepository getRepository(Application application){
-        if(repository == null){
-            synchronized (TaskRepository.class){
-                if(repository == null){
+
+    public static TaskRepository getRepository(Application application) {
+        if (repository == null) {
+            synchronized (TaskRepository.class) {
+                if (repository == null) {
                     repository = new TaskRepository(application);
                 }
             }
@@ -37,7 +38,7 @@ public class TaskRepository {
         return repository;
     }
 
-    public void insertTask(final Task task){
+    public void insertTask(final Task task) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -45,7 +46,8 @@ public class TaskRepository {
             }
         });
     }
-    public void updateTask(final Task task){
+
+    public void updateTask(final Task task) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -53,7 +55,8 @@ public class TaskRepository {
             }
         });
     }
-    public void deleteTask(final Task task){
+
+    public void deleteTask(final Task task) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
@@ -62,10 +65,10 @@ public class TaskRepository {
         });
     }
 
-    public LiveData<PagedList<Task>> getAllTasks(){
+    public LiveData<PagedList<Task>> getAllTasks() {
         return new LivePagedListBuilder<>(
-                taskDao.getAllTasks(),PAGE_SIZE
+                taskDao.getAllTasks(), PAGE_SIZE
         ).build();
     }
-    }
 }
+
