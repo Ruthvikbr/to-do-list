@@ -1,8 +1,20 @@
 package com.workshop.finalapp.data;
 
+
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+
+@Entity(tableName = "Task")
 public class Task {
+
+    @ColumnInfo(name = "Title")
     private String title;
+
+    @ColumnInfo(name = "Description")
     private String description;
+
+    @ColumnInfo(name = "Priority")
     private int priority;
 
     public Task(String title, String description, int priority) {
@@ -37,5 +49,9 @@ public class Task {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public boolean isTaskEqual(Task t2){
+        return ((title.equals(t2.getTitle())) && (description.equals(t2.getDescription())) && (priority==t2.getPriority()));
     }
 }
