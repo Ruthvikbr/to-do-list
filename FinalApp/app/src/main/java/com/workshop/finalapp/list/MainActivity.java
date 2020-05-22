@@ -16,7 +16,7 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.ContentViewCallback;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.workshop.finalapp.R;
 import com.workshop.finalapp.addData.addActivity;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private final static int UPDATE_DATA_REQUEST_CODE = 2;
 
     public static final String EXTRA_DATA_TITLE = "extra_task_title";
-    public static final String EXTRA_DATA_DESCRIPTIONL = "extra_task_description";
+    public static final String EXTRA_DATA_DESCRIPTION = "extra_task_description";
     public static final String EXTRA_DATA_PRIORITY = "extra_task_priority";
 
     private listViewModel viewModel;
@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ConstraintLayout constraintLayout = findViewById(R.id.ConstraintLayout);
-        final Snackbar snackbar = Snackbar.make(constraintLayout,"Task Deleted", BaseTransientBottomBar.LENGTH_SHORT)
+        ConstraintLayout constraint = findViewById(R.id.ConstraintLayout);
+        final Snackbar snackbar = Snackbar.make(constraint,"Task Deleted", BaseTransientBottomBar.LENGTH_SHORT)
                 .setAction("UNDO", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -98,9 +98,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchUpdateTaskActivity(Task currentTask) {
         Intent intent = new Intent(this,addActivity.class);
-        intent.putExtra(EXTRA_DATA_TITLE,task.getTitle());
-        intent.putExtra(EXTRA_DATA_DESCRIPTIONL,task.getDescription());
-        intent.putExtra(EXTRA_DATA_PRIORITY,task.getPriority());
+        intent.putExtra(EXTRA_DATA_TITLE,currentTask.getTitle());
+        intent.putExtra(EXTRA_DATA_DESCRIPTION,currentTask.getDescription());
+        intent.putExtra(EXTRA_DATA_PRIORITY,currentTask.getPriority());
         startActivityForResult(intent,UPDATE_DATA_REQUEST_CODE);
     }
 }

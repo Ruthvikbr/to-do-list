@@ -2,12 +2,16 @@ package com.workshop.finalapp.data;
 
 
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Task")
 public class Task {
 
+    @NonNull
+    @PrimaryKey
     @ColumnInfo(name = "Title")
     private String title;
 
