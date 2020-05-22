@@ -29,7 +29,7 @@ public class addActivity extends AppCompatActivity implements AdapterView.OnItem
         Button submitBtn = findViewById(R.id.submit);
 
         //adding spinner elements
-        Spinner spinner = findViewById(R.id.priority);
+        Spinner spinner = findViewById(R.id.newPriority);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.Priority_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

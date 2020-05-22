@@ -14,15 +14,19 @@ public class listViewModel extends AndroidViewModel {
 
     private TaskRepository repository;
 
-    private LiveData<PagedList<Task>> pagedListLiveData;
+    public LiveData<PagedList<Task>> pagedListLiveData;
 
     public listViewModel(@NonNull Application application) {
         super(application);
         repository = new TaskRepository(application);
         pagedListLiveData = repository.getAllTasks();
     }
+    public void insertTask(Task task){
+        repository.insertTask(task);
+    }
 
     public void deleteTask(Task task){
         repository.deleteTask(task);
     }
+
 }
