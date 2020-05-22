@@ -22,7 +22,7 @@ public class TaskRepository {
 
     private ExecutorService executor = Executors.newSingleThreadExecutor();
 
-    private TaskRepository(Application application) {
+    public TaskRepository(Application application) {
         TaskDatabase db = TaskDatabase.getInstance(application);
         taskDao = db.taskDao();
     }
