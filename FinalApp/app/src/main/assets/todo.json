@@ -1,0 +1,24 @@
+{
+  "todo": [
+    {
+      "title": "UI for ToDo App",
+      "content": "Create the views and UI elements for the app.",
+      "priority": 1
+    },
+    {
+      "title": "Local Database",
+      "content": "Setup Room database to store data locally.",
+      "priority": 1
+    },
+    {
+      "title": "Implement Material Design",
+      "content": "Make use of Material Design components and modify the UI to follow Material design guidelines.",
+      "priority": 3
+    },
+    {
+      "title": "Pre-populate database",
+      "content": "Pre-populate the database by parsing JSON data.",
+      "priority": 2
+    }
+  ]
+}
