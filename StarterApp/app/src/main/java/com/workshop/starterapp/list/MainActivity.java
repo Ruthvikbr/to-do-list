@@ -1,8 +1,10 @@
-package com.workshop.starterapp;
+package com.workshop.starterapp.list;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.workshop.starterapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
