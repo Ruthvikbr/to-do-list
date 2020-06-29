@@ -86,7 +86,7 @@ public abstract class TaskDatabase extends RoomDatabase {
                 String title = todo.getString("title");
                 String content = todo.getString("content");
                 int priority = todo.getInt("priority");
-                taskDao.insertTask(new Task(title, content, priority));
+                taskDao.insertTask(new Task(0L,title, content, priority));
             }
         } catch (JSONException e){
             e.printStackTrace();

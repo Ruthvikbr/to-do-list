@@ -10,8 +10,9 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "Task")
 public class Task {
 
-    @NonNull
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    private long task_id;
+
     @ColumnInfo(name = "Title")
     private String title;
 
@@ -21,15 +22,22 @@ public class Task {
     @ColumnInfo(name = "Priority")
     private int priority;
 
-    public Task(String title, String description, int priority) {
+    public Task(Long id,String title, String description, int priority) {
         this.title = title;
         this.description = description;
         this.priority = priority;
+        this.task_id=id;
     }
 
-    public Task(){
-
+    public long getTask_id() {
+        return task_id;
     }
+
+    public void setTask_id(long task_id) {
+        this.task_id = task_id;
+    }
+
+    public Task(){}
 
     public String getTitle() {
         return title;

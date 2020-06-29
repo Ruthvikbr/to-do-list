@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private final static int NEW_DATA_REQUEST_CODE =1;
     private final static int UPDATE_DATA_REQUEST_CODE = 2;
 
+    public static final String EXTRA_DATA_ID = "extra_task_id";
     public static final String EXTRA_DATA_TITLE = "extra_task_title";
     public static final String EXTRA_DATA_DESCRIPTION = "extra_task_description";
     public static final String EXTRA_DATA_PRIORITY = "extra_task_priority";
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchUpdateTaskActivity(Task currentTask) {
         Intent intent = new Intent(this,addActivity.class);
+        intent.putExtra(EXTRA_DATA_ID,currentTask.getTask_id());
         intent.putExtra(EXTRA_DATA_TITLE,currentTask.getTitle());
         intent.putExtra(EXTRA_DATA_DESCRIPTION,currentTask.getDescription());
         intent.putExtra(EXTRA_DATA_PRIORITY,currentTask.getPriority());

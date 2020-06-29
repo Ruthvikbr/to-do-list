@@ -3,6 +3,7 @@ package com.workshop.finalapp.addData;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +19,7 @@ import com.workshop.finalapp.data.Task;
 public class addActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private int[] priorities = {1,2,3};
     private int priority = 0;
+    public static final String EXTRA_DATA_ID = "extra_task_id";
     public static final String EXTRA_DATA_TITLE = "extra_task_title";
     public static final String EXTRA_DATA_DESCRIPTION = "extra_task_description";
     public static final String EXTRA_DATA_PRIORITY = "extra_task_priority";
@@ -25,6 +27,7 @@ public class addActivity extends AppCompatActivity implements AdapterView.OnItem
     private addViewModel viewModel;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +41,7 @@ public class addActivity extends AppCompatActivity implements AdapterView.OnItem
         final EditText title = findViewById(R.id.newTitle);
         final EditText description = findViewById(R.id.newDescription);
         Button submitBtn = findViewById(R.id.submit);
-        int taskPriority = 0;
+        int taskPriority;
 
         //adding spinner elements
         Spinner spinner = findViewById(R.id.newPriority);
@@ -49,6 +52,7 @@ public class addActivity extends AppCompatActivity implements AdapterView.OnItem
         spinner.setOnItemSelectedListener(this);
 
         if(extras != null){
+
             String taskTitle = extras.getString(EXTRA_DATA_TITLE,"");
             taskPriority = extras.getInt(EXTRA_DATA_PRIORITY) - 1;
             String taskDescription = extras.getString(EXTRA_DATA_DESCRIPTION,"");
@@ -78,11 +82,12 @@ public class addActivity extends AppCompatActivity implements AdapterView.OnItem
                 String Description = description.getText().toString();
                 if(!Title.isEmpty() && !Description.isEmpty() && priority!=0){
                  if(extras!=null){
-                     Task task = new Task(Title,Description,priority);
+                     Long id = extras.getLong(EXTRA_DATA_ID);
+                     Task task = new Task(id,Title,Description,priority);
                      viewModel.updateTask(task);
                  }
                  else{
-                     Task task = new Task(Title,Description,priority);
+                     Task task = new Task(0L,Title,Description,priority);
                      viewModel.insertTask(task);
                  }
                 }
