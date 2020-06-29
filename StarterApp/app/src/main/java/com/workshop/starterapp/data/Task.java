@@ -7,20 +7,33 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "Task")
 public class Task {
 
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "task_Id")
+    private long ID;
+
     @ColumnInfo(name = "priority")
     private int taskPriority;
 
-    @PrimaryKey()
+
     @ColumnInfo(name = "taskName")
     private String TaskName;
 
     @ColumnInfo(name = "taskDescription")
     private String TaskDescription;
 
-    public Task( String taskName, String taskDescription,int taskPriority) {
+    public Task(long id, String taskName, String taskDescription,int taskPriority) {
+        this.ID = id;
         this.taskPriority = taskPriority;
         TaskName = taskName;
         TaskDescription = taskDescription;
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
     }
 
     public Task() {
